@@ -26,4 +26,4 @@ export class KanjiCard {
     createdDate: Date;
 }
 
-export const UserSchema = SchemaFactory.createForClass(KanjiCard);
+export const KanjiSchema = SchemaFactory.createForClass(KanjiCard);
