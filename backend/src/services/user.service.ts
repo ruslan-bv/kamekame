@@ -15,7 +15,7 @@ export class UserService {
         const salt = await bcrypt.genSalt();
         const hash = await bcrypt.hash(user.password, salt);
         const reqBody = {
-            fullname: user.name,
+            name: user.name,
             email: user.email,
             password: hash
         }
