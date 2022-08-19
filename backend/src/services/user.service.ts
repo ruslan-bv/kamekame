@@ -1,9 +1,10 @@
 import { Injectable, HttpException, HttpStatus } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
-import { User, UserDocument } from "../models/user.schema";
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
+import { Logger } from '@nestjs/common';
+import { User, UserDocument } from "../models/user.schema";
 
 @Injectable()
 export class UserService {
@@ -41,7 +42,11 @@ export class UserService {
         }
     }
 
-    async getUserInformation(email): Promise<User> {
-        return await this.userModel.findOne({ email }).exec();
+    async getUserInformation(email: string): Promise<User> {
+        return await this.userModel.findOne({ email: email }).exec();
     }
+
+    // async getUsers() {
+    //     return await this.userModel.find();
+    // }
 }
