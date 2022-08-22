@@ -17,4 +17,12 @@ export class DeckController {
             newDeck
         });
     }
+
+    @Put('/update')
+    async Update(@Res() response, @Body() deck: Deck) {
+        const updatedDeck = await this.deckService.update(deck);
+        return response.status(HttpStatus.ACCEPTED).json({
+            updatedDeck
+        });
+    }
 }

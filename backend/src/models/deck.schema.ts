@@ -4,6 +4,8 @@ import { KanjiCard } from './kanjicard.schema';
 @Schema()
 export class Deck {
     @Prop({required: true})
+    id: string;
+    @Prop({required: true})
     name: string;
     @Prop({required: false})
     letter: KanjiCard;

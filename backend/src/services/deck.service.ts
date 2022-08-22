@@ -20,4 +20,20 @@ export class DeckService {
 
         return newDeck.save();
     }
+
+    async update(deck: Deck): Promise<object> {
+        const { id } = deck;
+        const updatedDeck = await this.deckModel.findByIdAndUpdate(id, deck);
+
+        if (!updatedDeck) {
+            return new HttpException('No deck found!', HttpStatus.BAD_REQUEST);
+        }
+
+        return updatedDeck;
+    }
+
+    // async delete(deck: Deck): Promise<object> {
+    //     const { id } = deck;
+    //     const redundantDeck = await
+    // }
 }
