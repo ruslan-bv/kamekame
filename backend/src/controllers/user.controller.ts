@@ -33,4 +33,10 @@ export class UserController {
         const existingUser = await this.userService.getUserInformation(email);
         return response.status(HttpStatus.OK).json(existingUser);
     }
+
+    // @Get('/users')
+    // async GetAllUsers(@Res() response) {
+    //     const allUsers = await this.userService.getUsers();
+    //     return response.status(HttpStatus.OK).json(allUsers);
+    // }
 }

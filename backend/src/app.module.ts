@@ -5,6 +5,7 @@ import { join } from 'path';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule } from './modules/user.module';
+import { DeckModule } from './modules/deck.module';
 
 @Module({
   imports: [
@@ -12,7 +13,8 @@ import { UserModule } from './modules/user.module';
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'dist'),
     }),
-    UserModule
+    UserModule,
+    DeckModule
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -4,13 +4,15 @@ import { KanjiCard } from './kanjicard.schema';
 @Schema()
 export class Deck {
     @Prop({required: true})
-    title: string;
+    name: string;
     @Prop({required: false})
     letter: KanjiCard;
+    @Prop({ required: true})
+    userEmail: string;
     @Prop({default: Date.now()})
     createdDate: Date;
 }
 
 export type DeckDocument = Deck & Document;
 
-export const DeckShema = SchemaFactory.createForClass(Deck);
+export const DeckSchema = SchemaFactory.createForClass(Deck);
