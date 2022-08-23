@@ -10,11 +10,11 @@ export class DeckService {
         @InjectModel(Deck.name) private deckModel: Model<DeckDocument>
     ) {}
 
-    async create(title): Promise<Deck> {
-        // const { email } = user;
+    async create(title, email): Promise<Deck> {
         const reqBody = {
-            title: title
-        }
+            name: title,
+            userEmail: email
+        };
 
         const newDeck = new this.deckModel(reqBody);
 
@@ -35,5 +35,11 @@ export class DeckService {
     async delete(deck: Deck): Promise<void> {
         const { id } = deck;
         await this.deckModel.deleteOne({ _id: id });
+    }
+
+    async getUserDecks(user: User): Promise<Deck[]> {
+        const { email } = user;
+        const decks = await this.deckModel.find({ userEmail: email });
+        return decks;
     }
 }
