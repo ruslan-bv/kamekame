@@ -32,8 +32,8 @@ export class DeckService {
         return updatedDeck;
     }
 
-    // async delete(deck: Deck): Promise<object> {
-    //     const { id } = deck;
-    //     const redundantDeck = await
-    // }
+    async delete(deck: Deck): Promise<void> {
+        const { id } = deck;
+        await this.deckModel.deleteOne({ _id: id });
+    }
 }

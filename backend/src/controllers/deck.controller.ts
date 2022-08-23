@@ -25,4 +25,10 @@ export class DeckController {
             updatedDeck
         });
     }
+
+    @Delete('/delete')
+    async Delete(@Res() response, @Body() deck: Deck) {
+        await this.deckService.delete(deck);
+        return response.status(HttpStatus.GONE);
+    }
 }
