@@ -1,18 +1,29 @@
-import { Body, Controller, Delete, Get, HttpStatus, Param, Post, UploadedFiles, Put, Req, Res } from '@nestjs/common';
+import { Body, Controller, Delete, HttpStatus, Get, Post, Put, Res, UseGuards } from '@nestjs/common';
 import { Deck } from '../models/deck.schema';
 import { User } from '../models/user.schema';
 import { DeckService } from '../services/deck.service';
 import { CreateDeckDto } from '../dtos/createDeck.dto';
+import { JwtGuard } from '../guards/jwt.guard';
 
+@UseGuards(JwtGuard)
 @Controller('/api/v1/:user/deck')
 export class DeckController {
     constructor(
         private readonly deckService: DeckService
     ) {}
 
+    @Get('/getall')
+    async Get(@Res() response, @Body() user: User) {
+        const userDecks = await this.deckService.getUserDecks(user);
+        return response.status(HttpStatus.ACCEPTED).json({
+            userDecks
+        });
+    }
+
     @Post('/create')
-    async Create(@Res() response, @Body() createDeck: CreateDeckDto) {
-        const newDeck = await this.deckService.create(createDeck.title);
+    async Create(@Res() response, @Body() deck: CreateDeckDto) {
+        const { title, email } = deck;
+        const newDeck = await this.deckService.create(title, email);
         return response.status(HttpStatus.CREATED).json({
             newDeck
         });
