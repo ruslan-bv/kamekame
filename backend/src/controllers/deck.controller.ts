@@ -12,8 +12,16 @@ export class DeckController {
         private readonly deckService: DeckService
     ) {}
 
+    @Get('/get')
+    async GetDecksByName(@Res() response, @Body() user: User, name: string) {
+        const userDecks = await this.deckService.getDecksByName(user, name);
+        return response.status(HttpStatus.ACCEPTED).json({
+            userDecks
+        });
+    }
+
     @Get('/getall')
-    async Get(@Res() response, @Body() user: User) {
+    async GetAllDecks(@Res() response, @Body() user: User) {
         const userDecks = await this.deckService.getUserDecks(user);
         return response.status(HttpStatus.ACCEPTED).json({
             userDecks

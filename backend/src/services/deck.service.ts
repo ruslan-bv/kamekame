@@ -42,4 +42,11 @@ export class DeckService {
         const decks = await this.deckModel.find({ userEmail: email });
         return decks;
     }
+
+    async getDecksByName(user: User, name: string): Promise<Deck[]> {
+        const { email } = user;
+        const decks = await this.deckModel.find({ useEmail: email });
+        const filteredDecks = decks.filter((deck) => deck.name === name);
+        return filteredDecks;
+    }
 }
