@@ -6,6 +6,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule } from './modules/user.module';
 import { DeckModule } from './modules/deck.module';
+import { KanjiModule } from './modules/kanji.module';
 
 @Module({
   imports: [
@@ -14,7 +15,8 @@ import { DeckModule } from './modules/deck.module';
       rootPath: join(__dirname, '..', 'dist'),
     }),
     UserModule,
-    DeckModule
+    DeckModule,
+    KanjiModule
   ],
   controllers: [AppController],
   providers: [AppService],
