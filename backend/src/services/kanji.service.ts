@@ -21,4 +21,23 @@ export class KanjiService {
             .get('https://kanjiapi.dev/v1/kanji/jinmeiyo')
             .pipe(map(axiosResponse => axiosResponse.data)));
     }
-}
+
+    async findKanjiByCharacter(kanji: string): Promise<AxiosResponse> {
+        return await lastValueFrom(this.httpService
+            .get(`https://kanjiapi.dev/v1/kanji/${kanji}`)
+            .pipe(map(axiosResponse => axiosResponse.data)));
+    }
+
+    async findKanjiByReading(reading: string): Promise<AxiosResponse> {
+        return await lastValueFrom(this.httpService
+            .get(`https://kanjiapi.dev/v1/kanji/${reading}`)
+            .pipe(map(axiosResponse => axiosResponse.data)));
+    }
+
+    async findDictEntryByKanji(kanji: string): Promise<AxiosResponse> {
+        return await lastValueFrom(this.httpService
+            .get(`https://kanjiapi.dev/v1/kanji/${kanji}`)
+            .pipe(map(axiosResponse => axiosResponse.data)));
+    }
+ }
+ 

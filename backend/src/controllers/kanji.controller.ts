@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, HttpStatus, Get, Post, Put, Res, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, HttpStatus, Get, Res, Query } from '@nestjs/common';
 import { KanjiService } from '../services/kanji.service';
 import { Logger } from '@nestjs/common';
 
@@ -22,5 +22,26 @@ export class KanjiController {
         return response.status(HttpStatus.OK).json({
             list
         });
+    }
+
+    @Get('/character/kanji')
+    async GetKanjiByCharacter(@Res() response, @Query() query: { character: string }) {
+        const { character } = query;
+        const kanji = await this.kanjiService.findKanjiByCharacter(character);
+        return response.status(HttpStatus.OK).json(kanji); 
+    }
+
+    @Get('/character/reading')
+    async GetKanjiByReading(@Res() response, @Query() query: { reading: string}) {
+        const { reading } = query;
+        const list = await this.kanjiService.findKanjiByReading(reading);
+        return response.status(HttpStatus.OK).json(list);
+    }
+
+    @Get('/character/kanji/dict')
+    async GetDictEntryByKanji(@Res() response, @Query() query: { character: string}) {
+        const { character } = query;
+        const list = await this.kanjiService.findDictEntryByKanji(character);
+        return response.status(HttpStatus.OK).json(list);
     }
 }
