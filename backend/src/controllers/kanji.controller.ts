@@ -15,4 +15,12 @@ export class KanjiController {
             list
         });
     }
+
+    @Get('/jinmeiyo')
+    async GetJinmeiyouKanjiList(@Res() response) {
+        const list = await this.kanjiService.findJinmeiyouKanji();
+        return response.status(HttpStatus.OK).json({
+            list
+        });
+    }
 }

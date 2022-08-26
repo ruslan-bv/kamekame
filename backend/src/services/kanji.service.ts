@@ -1,6 +1,6 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
-import { Observable, firstValueFrom, lastValueFrom } from 'rxjs';
+import { lastValueFrom } from 'rxjs';
 import { AxiosResponse } from 'axios';
 import { map } from 'rxjs/operators';
 
@@ -10,9 +10,15 @@ export class KanjiService {
         private readonly httpService: HttpService
     ) {}
 
-    async findJouyouKanji(): Promise<any> {
+    async findJouyouKanji(): Promise<AxiosResponse> {
         return await lastValueFrom(this.httpService
                     .get('https://kanjiapi.dev/v1/kanji/joyo')
                     .pipe(map(axiosResponse => axiosResponse.data)));
-    } 
+    }
+
+    async findJinmeiyouKanji(): Promise<AxiosResponse> {
+        return await lastValueFrom(this.httpService
+            .get('https://kanjiapi.dev/v1/kanji/jinmeiyo')
+            .pipe(map(axiosResponse => axiosResponse.data)));
+    }
 }
