@@ -1,7 +1,9 @@
-import { Body, Controller, Delete, HttpStatus, Get, Res, Query } from '@nestjs/common';
+import { Controller, HttpStatus, Get, Res, Query, UseGuards } from '@nestjs/common';
 import { KanjiService } from '../services/kanji.service';
 import { Logger } from '@nestjs/common';
+import { JwtGuard } from '../guards/jwt.guard';
 
+@UseGuards(JwtGuard)
 @Controller('/api/v1/')
 export class KanjiController {
     constructor(
