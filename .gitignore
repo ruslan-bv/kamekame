@@ -1,3 +1,14 @@
+# dependencies
+node_modules
+/.pnp
+.pnp.js
+
+# testing
+/frontend/coverage
+
+# production
+/frontend/build
+
 # compiled output
 /backend/dist
 /backend/node_modules
@@ -13,6 +24,10 @@ lerna-debug.log*
 
 # OS
 .DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
 # Tests
 /coverage
