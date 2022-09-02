@@ -7,7 +7,6 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <h1>Kamekame!</h1>
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/account" element={<Account />} />
