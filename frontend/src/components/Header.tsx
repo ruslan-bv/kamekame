@@ -4,7 +4,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 
 const Header:React.FC = () => {
     return (
-        <AppBar>
+        <AppBar position="static">
             <Toolbar sx = {{ display: 'flex', justifyContent: 'space-between' }}>
                 <IconButton color="inherit" sx={{ mr: 2 }}>
                     <MenuIcon />
