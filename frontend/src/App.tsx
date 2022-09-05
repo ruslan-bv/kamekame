@@ -4,7 +4,7 @@ import Main from './pages/Main';
 import Account from './pages/Account';
 import './App.css';
 
-function App() {
+const App:React.FC = () => {
   return (
     <div className="App">
       <Routes>
