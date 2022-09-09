@@ -3,7 +3,7 @@ import { KanjiService } from '../services/kanji.service';
 import { Logger } from '@nestjs/common';
 import { JwtGuard } from '../guards/jwt.guard';
 
-@UseGuards(JwtGuard)
+// @UseGuards(JwtGuard)
 @Controller('/api/v1/')
 export class KanjiController {
     constructor(
