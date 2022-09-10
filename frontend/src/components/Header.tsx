@@ -40,7 +40,7 @@ const Header:React.FC<HeaderProps> = ({ isAccountOn }) => {
                  !isAccountOn ?
                  <ButtonGroup variant="contained">
                     <Button>Login</Button>
-                    <Button>Register</Button>
+                    <Button href="/register">Register</Button>
                  </ButtonGroup> :
                  <Button variant="contained">Logout</Button>   
                 }

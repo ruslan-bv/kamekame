@@ -2,6 +2,7 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Main from './pages/Main';
 import Account from './pages/Account';
+import Registration from './pages/Registration';
 import './App.css';
 
 const App:React.FC = () => {
@@ -10,6 +11,7 @@ const App:React.FC = () => {
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/account" element={<Account />} />
+        <Route path="/register" element={<Registration />} />
       </Routes>
     </div>
   );
