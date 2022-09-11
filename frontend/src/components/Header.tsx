@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { AppBar, Box, Button, ButtonGroup, Toolbar, Typography, IconButton,
-         Menu, MenuItem } from '@mui/material';
+         Menu, MenuItem, Modal } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+import Login from '../pages/Login';
 
 interface HeaderProps {
     isAccountOn?: boolean;
@@ -17,6 +18,10 @@ const Header:React.FC<HeaderProps> = ({ isAccountOn }) => {
     const handleClose = () => {
         setAnchorEl(null);
     };
+
+    const [modal, setModal] = React.useState(false);
+    const handleOpenModal = () => setModal(true);
+    const handleCloseModal = () => setModal(false);
 
     return (
         <AppBar position="static">
@@ -39,7 +44,10 @@ const Header:React.FC<HeaderProps> = ({ isAccountOn }) => {
                 {
                  !isAccountOn ?
                  <ButtonGroup variant="contained">
-                    <Button>Login</Button>
+                    <Button onClick={handleOpenModal}>Login</Button>
+                    <Modal open={modal} onClose={handleCloseModal}>
+                        <Login />
+                    </Modal>
                     <Button href="/register">Register</Button>
                  </ButtonGroup> :
                  <Button variant="contained">Logout</Button>   
