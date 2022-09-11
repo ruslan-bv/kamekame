@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { Box, Button, ButtonGroup, Toolbar, Typography, IconButton, TextField } from '@mui/material';
 import Header from '../components/Header';
+import { signup } from '../services/authServices';
 
 const Registration:React.FC = () => {
     const [registration, setRegistration] = React.useState({
@@ -13,6 +14,15 @@ const Registration:React.FC = () => {
         const { name, value } = e.target;
         setRegistration((prevRegistration) => {
             return {...prevRegistration, [name]: value}
+        });
+    }
+
+    const handleRegistration = () => {
+        signup(registration);
+        setRegistration({
+            name: '',
+            email: '',
+            password: ''
         });
     }
     
@@ -62,7 +72,7 @@ const Registration:React.FC = () => {
                     >{registration.password}
                     </TextField>
                 </Box>
-                <Button variant="contained" color="info">Register</Button>
+                <Button onClick={handleRegistration} variant="contained" color="info">Register</Button>
             </Box>
         </div>
     )

@@ -28,7 +28,8 @@ export class UserController {
 
     @UseGuards(JwtGuard)
     @Get('/user')
-    async GetUser(@Res() response, @Query() query: { email: string }) {
+    async GetUser(@Res() response, @Req() request, @Query() query: { email: string }) {
+        console.log(request.cookies)
         const { email } = query;
         const existingUser = await this.userService.getUserInformation(email);
         return response.status(HttpStatus.OK).json(existingUser);

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Box, Button, Typography, TextField } from '@mui/material';
+import { signin } from '../services/authServices';
 
 const Login:React.FC = () => {
     const style = {
@@ -25,6 +26,14 @@ const Login:React.FC = () => {
             return {
                 ...prevLogin, [name]: value
             }
+        });
+    }
+
+    const handleLogin = () => {
+        signin(login);
+        setLogin({
+            email: '',
+            password: ''
         });
     }
     
@@ -53,7 +62,7 @@ const Login:React.FC = () => {
                 variant="outlined"
             >{login.password}
             </TextField>
-            <Button color="info">Sign in</Button>
+            <Button onClick={handleLogin} color="info">Sign in</Button>
             </Typography>
       </Box>
     )
