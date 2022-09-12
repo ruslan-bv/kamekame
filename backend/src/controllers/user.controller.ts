@@ -21,15 +21,17 @@ export class UserController {
     }
 
     @Post('/signin')
-    async Signin(@Res() response, @Body() user: User) {
-        const token = await this.userService.signin(user, this.jwtService);
-        return response.status(HttpStatus.OK).json(token);
+    async Signin(@Res({ passthrough: true}) response, @Body() user: User) {
+        const jwt = await this.userService.signin(user, this.jwtService);
+        response.cookie('Authorization', jwt);
+        return response.send({
+            success: true
+        });
     }
 
     @UseGuards(JwtGuard)
     @Get('/user')
     async GetUser(@Res() response, @Req() request, @Query() query: { email: string }) {
-        console.log(request.cookies)
         const { email } = query;
         const existingUser = await this.userService.getUserInformation(email);
         return response.status(HttpStatus.OK).json(existingUser);

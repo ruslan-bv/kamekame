@@ -24,16 +24,14 @@ export class UserService {
         return newUser.save();
     }
 
-    async signin(user: User, jwt: JwtService): Promise<object> {
+    async signin(user: User, jwt: JwtService): Promise<object | string> {
         const isUserInDatabase = await this.userModel.findOne({ email: user.email }).exec();
 
         if (isUserInDatabase) {
             const { password } = isUserInDatabase;
             if (bcrypt.compare(user.password, password)) {
                 const payload = { email: user.email };
-                return {
-                    token: jwt.sign(payload)
-                }
+                return jwt.sign(payload)
             } else {
                 return new HttpException('Incorrect Username Or Password', HttpStatus.UNAUTHORIZED);
             }

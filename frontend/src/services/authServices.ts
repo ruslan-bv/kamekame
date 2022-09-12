@@ -20,9 +20,10 @@ export const signin = async (user: any) => {
         method: 'POST',
         cache: 'no-cache',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
         },
-        body: JSON.stringify(user)
+        body: JSON.stringify(user),
+        credentials: 'include'
     })
 
     return response.json();
