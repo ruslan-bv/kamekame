@@ -37,6 +37,7 @@ const Header:React.FC<HeaderProps> = ({ isAccountOn }) => {
                     <MenuItem component={Link} to={'/'}>Home</MenuItem>
                     <MenuItem component={Link} to={'/account'}>Profile</MenuItem>
                     <MenuItem onClick={handleClose}>Logout</MenuItem>
+                    <MenuItem component={Link} to={'/decks'}>My Decks</MenuItem>
                 </Menu>
                 <Typography variant="h4">
                     カメカメ：Your Kanji Wordbook

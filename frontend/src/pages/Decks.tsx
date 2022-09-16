@@ -3,11 +3,13 @@ import { Box, Container, Card, CardContent, CardActions, Button, Typography } fr
 import Header from '../components/Header';
 import Deck from '../components/Deck';
 
-interface DecksProps {
-    decks: any;
-}
+// interface DecksProps {
+//     decks: any;
+// }
 
-const Decks:React.FC<DecksProps> = ({ decks }) => {
+const Decks:React.FC = () => {
+    const decks = [{name: 'animals'}, {name: 'prefectures'}, {name: 'cities'}];
+
     return (
         <div>
             <Header />
@@ -17,8 +19,8 @@ const Decks:React.FC<DecksProps> = ({ decks }) => {
                 justifyContent: 'space-around',
                 marginTop: '20px'
             }}>
-                {decks.map((deck: any) => {
-                    {deck.name}
+                {decks.map((deck) => {
+                    return <span>{deck.name}</span>
                 })}
             </Box>
         </div>
