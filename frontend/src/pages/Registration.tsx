@@ -36,7 +36,6 @@ const Registration:React.FC = () => {
                 mb: 10,
                 padding: 2,
                 backgroundColor: 'primary.main',
-                // width: 200,
                 height: 400,
             }}>
                 <Typography color="white" variant="h4">Account Control</Typography>
