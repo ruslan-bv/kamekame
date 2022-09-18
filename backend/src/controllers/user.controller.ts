@@ -25,7 +25,8 @@ export class UserController {
         const jwt = await this.userService.signin(user, this.jwtService);
         response.cookie('Authorization', jwt);
         return response.send({
-            success: true
+            success: true,
+            email: user.email
         });
     }
 
